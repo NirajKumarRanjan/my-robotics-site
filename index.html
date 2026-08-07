@@ -3,34 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNA Robotics</title>
+    <title>DNA Robotics | Solutions & Components</title>
     <style>
+        :root {
+            --primary: #5a189a;
+            --primary-light: #7b2cbf;
+            --accent: #00f5d4;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Layer 1: Navigation & Hero (Introduction) */
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #e0aaff;
+        }
+
+        /* Layer 2: Core Offerings Toggle (Interactive Tabs) */
+        .section-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .toggle-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            gap: 15px;
+            margin-bottom: 40px;
         }
-        .container {
-            text-align: center;
-            padding: 30px;
+
+        .toggle-btn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active, .toggle-btn:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(90, 24, 154, 0.3);
+        }
+
+        .content-panel {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        /* Layer 3: Interactive Deep-Dive Explorer Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary);
+            cursor: pointer;
         }
-        h1 { color: #5a189a; margin-bottom: 10px; }
-        p { font-size: 1.1rem; color: #666; }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f0e6ff;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Live Filter Search Functionality */
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            margin: 0 auto 30px;
+            display: block;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--dark);
+            color: #888;
+            margin-top: 80px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🧬 DNA Robotics</h1>
-        <p>Our custom HTML site is officially live on GitHub Pages!</p>
-    </div>
+
+    <!-- LAYER 1: Introduction & Brand Positioning -->
+    <header>
+        <div class="logo">🧬 DNA Robotics</div>
+        <nav>
+            <a href="#explore">Explore Solutions</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to DNA Robotics</h1>
+        <p>Your one-stop destination for end-to-end robotics project solutions and premium hardware components.</p>
+    </section>
+
+    <!-- LAYER 2: Core Offerings Selection (Interactive Tabs) -->
+    <main class="section-container" id="explore">
+        <div class="toggle-container">
+            <button class="toggle-btn active" onclick="switchTab('projects')">Project Solutions</button>
+            <button class="toggle-btn" onclick="switchTab('components')">Components Store</button>
+        </div>
+
+        <!-- LAYER 3: Detailed Deep-Dive Views -->
+        <!-- Tab A: Project Solutions -->
+        <div id="projects" class="content-panel active">
+            <input type="text" class="search-box" placeholder="Search project fields (e.g. AI, Autonomous)..." onkeyup="filterItems('projects', this.value)">
+            <div class="grid">
+                <div class="card">
+                    <span class="tag">Industrial</span>
+                    <h3>Autonomous Mobile Robots (AMR)</h3>
+                    <p>Complete blueprints, ROS2 workspaces, and navigation scripts for warehouse automation tracks.</p>
+                </div>
+                <div class="card">
+                    <span class="tag">AI & Vision</span>
+                    <h3>Computer Vision Sorting Arms</h3>
+                    <p>Machine learning-powered robotic arm scripts for sorting objects by color, shape, or weight tags.</p>
+                </div>
+                <div class="card">
+                    <span class="tag">Education</span>
+                    <h3>IoT Smart Agriculture Drone</h3>
+                    <p>Custom micro-controller firmware designs mapped for environmental monitoring and data parsing systems.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab B: Components Store -->
+        <div id="components" class="content-panel">
+            <input type="text" class="search-box" placeholder="Search hardware (e.g. Motor, Controller)..." onkeyup="filterItems('components', this.value)">
+            <div class="grid">
+                <div class="card" style="border-top-color: var(--accent);">
+                    <span class="tag">Processing</span>
+                    <h3>Microcontroller Development Boards</h3>
+                    <p>High-performance IoT-enabled core units, fully pre-flashed for quick breadboard prototyping.</p>
+                </div>
+                <div class="card" style="border-top-color: var(--accent);">
+                    <span class="tag">Actuators</span>
+                    <h3>High-Torque Smart Servo Motors</h3>
+                    <p>Precision feedback motors supporting serial link daisy-chain adjustments for joint-articulation arrays.</p>
+                </div>
+                <div class="card" style="border-top-color: var(--accent);">
+                    <span class="tag">Sensors</span>
+                    <h3>Solid-State LiDAR Scanners</h3>
+                    <p>High-frequency distance spatial sensors configured out-of-the-box for real-time SLAM navigation.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DNA Robotics. Built with custom HTML & JavaScript hosted on GitHub Pages.</p>
+    </footer>
+
+    <!-- Interactive Layer Logic -->
+    <script>
+        function switchTab(tabId) {
+            // Remove active status from all tabs and panels
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
+            
+            // Activate clicked item elements
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function filterItems(panelId, query) {
+            const cleanQuery = query.toLowerCase();
+            const cards = document.querySelectorAll(`#${panelId} .card`);
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if(text.includes(cleanQuery)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
-
