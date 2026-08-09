@@ -26,7 +26,6 @@
             line-height: 1.6;
         }
 
-        /* Layer 1: Navigation & Hero (Introduction) */
         header {
             background-color: var(--dark);
             color: white;
@@ -41,12 +40,8 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent);
             display: flex;
             align-items: center;
-            gap: 10px;
         }
 
         nav a {
@@ -81,7 +76,6 @@
             color: #e0aaff;
         }
 
-        /* Layer 2: Core Offerings Toggle (Interactive Tabs) */
         .section-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -122,21 +116,21 @@
             display: block;
         }
 
-        /* Layer 3: Interactive Deep-Dive Explorer Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
         .card {
             background: white;
             border-radius: 12px;
-            padding: 25px;
+            overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
             border-top: 4px solid var(--primary);
-            cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
@@ -144,9 +138,41 @@
             box-shadow: 0 12px 20px rgba(0,0,0,0.1);
         }
 
+        .image-container {
+            width: 100%;
+            height: 200px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
         .card h3 {
-            margin-bottom: 12px;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
             color: var(--dark);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
         }
 
         .tag {
@@ -155,12 +181,12 @@
             color: var(--primary);
             padding: 4px 10px;
             border-radius: 15px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            align-self: flex-start;
         }
 
-        /* Live Filter Search Functionality */
         .search-box {
             width: 100%;
             max-width: 400px;
@@ -194,103 +220,79 @@
 </head>
 <body>
 
-    <!-- LAYER 1: Introduction & Brand Positioning -->
     <header>
         <div class="logo">
-            <img src="logo.png" alt="DNA Robotics Logo" style="height: 200px; width: auto; object-fit: contain; vertical-align: middle;">
+            <img src="logo.png" alt="DNA Robotics Logo" style="height: 40px; width: auto; object-fit: contain; vertical-align: middle;" onerror="this.style.display='none'; document.getElementById('txt-logo').style.display='block';">
+            <span id="txt-logo" style="display:none; font-size:1.5rem; font-weight:bold; color:var(--accent);">🧬 DNA Robotics</span>
         </div>
         <nav>
-            <a href="#explore">Explore Solutions</a>
+            <a href="#explore">Explore Catalog</a>
         </nav>
     </header>
 
     <section class="hero">
         <h1>Welcome to DNA Robotics</h1>
-        <p>Your one-stop destination for end-to-end robotics project solutions and premium hardware components.</p>
+        <p>Your engineering hub for premium DIY drone kits, microcontrollers, sensing frameworks, and mechanical actuators.</p>
     </section>
 
-    <!-- LAYER 2: Core Offerings Selection (Interactive Tabs) -->
     <main class="section-container" id="explore">
         <div class="toggle-container">
-            <button class="toggle-btn active" onclick="switchTab('projects')">Project Solutions</button>
-            <button class="toggle-btn" onclick="switchTab('components')">Components Store</button>
+            <button class="toggle-btn active" onclick="switchTab('projects')">DIY Project Solutions</button>
+            <button class="toggle-btn" onclick="switchTab('components')">Robotics & Drone Components</button>
         </div>
 
-        <!-- LAYER 3: Detailed Deep-Dive Views -->
-        <!-- Tab A: Project Solutions -->
+        <!-- PANEL 1: PROJECT SOLUTIONS -->
         <div id="projects" class="content-panel active">
-            <input type="text" class="search-box" placeholder="Search project fields (e.g. AI, Autonomous)..." onkeyup="filterItems('projects', this.value)">
+            <input type="text" class="search-box" placeholder="Search systems (e.g., Drone, AMR)..." onkeyup="filterItems('projects', this.value)">
             <div class="grid">
                 <div class="card">
-                    <span class="tag">Industrial</span>
-                    <h3>Autonomous Mobile Robots (AMR)</h3>
-                    <p>Complete blueprints, ROS2 workspaces, and navigation scripts for warehouse automation tracks.</p>
+                    <div class="image-container">
+                        <img src="https://unsplash.com" alt="Quadcopter Drone Build">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Aerospace</span>
+                            <h3>Autonomous Quadcopter Drone Set</h3>
+                            <p>Complete programmatic design solutions utilizing open-source flight firmware controllers and telemetry modules.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="card">
-                    <span class="tag">AI & Vision</span>
-                    <h3>Computer Vision Sorting Arms</h3>
-                    <p>Machine learning-powered robotic arm scripts for sorting objects by color, shape, or weight tags.</p>
+                    <div class="image-container">
+                        <img src="https://unsplash.com" alt="Autonomous Mobile Robot">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Industrial</span>
+                            <h3>Warehouse Autonomous Mobile Robot (AMR)</h3>
+                            <p>SLAM mapping setups and hardware layouts configured for automated factory navigation scripts.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="card">
-                    <span class="tag">Education</span>
-                    <h3>IoT Smart Agriculture Drone</h3>
-                    <p>Custom micro-controller firmware designs mapped for environmental monitoring and data parsing systems.</p>
+                    <div class="image-container">
+                        <img src="https://unsplash.com" alt="Computer Vision Arm">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">AI & Vision</span>
+                            <h3>Computer Vision Sorting Manipulator</h3>
+                            <p>Kinematic mechanical arm blueprints matched with object classification cameras and sorting mechanisms.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Tab B: Components Store -->
+        <!-- PANEL 2: COMPONENTS STORE -->
         <div id="components" class="content-panel">
-            <input type="text" class="search-box" placeholder="Search hardware (e.g. Motor, Controller)..." onkeyup="filterItems('components', this.value)">
+            <input type="text" class="search-box" placeholder="Search hardware (e.g., Microcontroller, Sensor)..." onkeyup="filterItems('components', this.value)">
             <div class="grid">
                 <div class="card" style="border-top-color: var(--accent);">
-                    <span class="tag">Processing</span>
-                    <h3>Microcontroller Development Boards</h3>
-                    <p>High-performance IoT-enabled core units, fully pre-flashed for quick breadboard prototyping.</p>
-                </div>
-                <div class="card" style="border-top-color: var(--accent);">
-                    <span class="tag">Actuators</span>
-                    <h3>High-Torque Smart Servo Motors</h3>
-                    <p>Precision feedback motors supporting serial link daisy-chain adjustments for joint-articulation arrays.</p>
-                </div>
-                <div class="card" style="border-top-color: var(--accent);">
-                    <span class="tag">Sensors</span>
-                    <h3>Solid-State LiDAR Scanners</h3>
-                    <p>High-frequency distance spatial sensors configured out-of-the-box for real-time SLAM navigation.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 DNA Robotics. Built with custom HTML & JavaScript hosted on GitHub Pages.</p>
-    </footer>
-
-    <!-- Interactive Layer Logic -->
-    <script>
-        function switchTab(tabId) {
-            // Remove active status from all tabs and panels
-            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
-            
-            // Activate clicked item elements
-            event.target.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
-
-        function filterItems(panelId, query) {
-            const cleanQuery = query.toLowerCase();
-            const cards = document.querySelectorAll(`#${panelId} .card`);
-            
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if(text.includes(cleanQuery)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+                    <div class="image-container">
+                        <img src="https://shutterstock.com" alt="Microcontroller Board" onerror="this.src='https://unsplash.com'">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Processing</span>
+                            <h3>Open-Source Microcontroller Units</h3>
